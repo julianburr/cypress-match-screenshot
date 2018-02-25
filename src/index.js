@@ -22,7 +22,7 @@ function matchScreenshot (name, options = {}) {
       cy.log(`See diff file at: ${diffFilePath}`);
       cy
         .exec(
-          `cypress-match-screenshots --name="${fileName}" --threshold=${options.threshold
+          `cypress-match-screenshot --name="${fileName}" --threshold=${options.threshold
             ? options.threshold
             : 0.005}`,
           {
