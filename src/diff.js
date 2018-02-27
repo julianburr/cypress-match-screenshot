@@ -1,9 +1,12 @@
+#! /usr/bin/env node
+
 const Blink = require('blink-diff');
 const path = require('path');
 const argv = require('yargs').argv;
 
 const resolve = (name) => {
-  return path.resolve(__dirname, `../screenshots/${name}`);
+  // NOTE: this assumes the script is being in the projects node_modules folder atm!
+  return path.resolve(__dirname, `../../../screenshots/${name}`);
 };
 
 const threshold = argv.threshold ? parseFloat(argv.threshold) : 0.005;

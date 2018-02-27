@@ -1,3 +1,9 @@
+function uuid () {
+  return ([ 1e7 ] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (a) =>
+    (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
+  );
+}
+
 function matchScreenshot (name, options = {}) {
   const fileName = `${this.test.parent.title} -- ${this.test.title} -- ${name}`;
 
@@ -10,6 +16,8 @@ function matchScreenshot (name, options = {}) {
   // we need to touch the old file for the first run,
   // we'll check later if the file actually has any content
   // in it or not
+  cy.exec(`mkdir -p cypress/screenshots/new`, { log: false });
+  cy.exec(`mkdir -p cypress/screenshots/diff`, { log: false });
   cy.exec(`touch "${oldFilePath}"`, { log: false });
 
   const id = uuid();
