@@ -6,7 +6,7 @@ const argv = require('yargs').argv;
 
 const resolve = (name) => {
   // NOTE: this assumes the script is being in the projects node_modules folder atm!
-  return path.resolve(__dirname, `../../../screenshots/${name}`);
+  return path.resolve(__dirname, `../../../cypress/screenshots/${name}`);
 };
 
 const threshold = argv.threshold ? parseFloat(argv.threshold) : 0.005;
