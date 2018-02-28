@@ -1,10 +1,11 @@
 {
   "name": "cypress-match-screenshot",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Utility to take screenshots during a cypress test and match them against previous runs",
   "main": "src/index.js",
   "bin": {
-    "cypress-match-screenshot": "src/diff.js"
+    "cypress-crop-screenshot": "src/crop-screenshot.js",
+    "cypress-diff-screenshot": "src/diff-screenshot.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
   "dependencies": {
     "blink-diff": "^1.0.13",
     "path": "^0.12.7",
-    "yargs": "^11.0.0"
+    "yargs": "^11.0.0",
+    "image-size": "^0.6.2",
+    "jimp": "^0.2.28"
   }
 }

@@ -6,15 +6,15 @@ const argv = require('yargs').argv;
 
 const resolve = (name) => {
   // NOTE: this assumes the script is being in the projects node_modules folder atm!
-  return path.resolve(__dirname, `../../../cypress/screenshots/${name}`);
+  return path.resolve(__dirname, `../../../${name}`);
 };
 
 const threshold = argv.threshold ? parseFloat(argv.threshold) : 0.005;
 
 const diff = new Blink({
-  imageAPath: resolve(`${argv.name}.png`),
-  imageBPath: resolve(`new/${argv.name}.png`),
-  imageOutputPath: resolve(`diff/${argv.name}.png`),
+  imageAPath: resolve(argv.pathOld),
+  imageBPath: resolve(argv.pathNew),
+  imageOutputPath: resolve(argv.target),
   thresholdType: Blink.THRESHOLD_PERCENT,
   threshold
 });

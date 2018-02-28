@@ -36,6 +36,7 @@ You can find all diffs as images in `cypress/screenshots/diff` to see what excac
 
 ## Todos
 
-- [ ] Crop screenshots to only contain relevant viewport (see [https://github.com/cypress-io/cypress/issues/1810](https://github.com/cypress-io/cypress/issues/181))
-- [ ] See if we can add more meaningful assertion messages + somehow show the diff image whenever the check fails
+- [x] Crop screenshots to only contain relevant viewport (see [https://github.com/cypress-io/cypress/issues/1810](https://github.com/cypress-io/cypress/issues/181))
+- [x] See if we can add more meaningful assertion messages 
+- [ ] Somehow show the diff image whenever the check fails
 
