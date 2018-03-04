@@ -25,7 +25,7 @@ That's it, now you can use the feature like this:
 describe('Example', function () {
   it('Should match screenshot', function () {
     cy.visit('https://google.com');
-    cy.matchScreenshot('Example');
+    cy.matchScreenshot('Google Screenshot');
   });
 });
 ```
@@ -34,9 +34,33 @@ On the first run the assertion will always pass and the tool will just store the
 
 You can find all diffs as images in `cypress/screenshots/diff` to see what excactly changed 😊
 
+## API
+
+### register
+
+**name** (optional)
+
+You can optionally define the name you want the functionality to be registered on. By default its `matchScreenshot`.
+
+```js
+import { register } from 'cypress-match-screenshot'
+register('myCustomName');
+
+// then in the test
+cy.myCustomName('Example');
+```
+
+## Match screenshot method
+
+**name** 
+
+If you have multiple screenshits within the same test case, you need to give them unique names so that the matcher can identify which image it should match to. It also makes it easier for you to find the image in the `screenshots` folder.
+
+The general rule for screenshot naming is: `[Test Suit Name] -- [Test Name] -- [Screenshot Name].png`
+
 ## Todos
 
-- [x] Crop screenshots to only contain relevant viewport (see [https://github.com/cypress-io/cypress/issues/1810](https://github.com/cypress-io/cypress/issues/181))
-- [x] See if we can add more meaningful assertion messages 
+- [x] ~Crop screenshots to only contain relevant viewport (see [https://github.com/cypress-io/cypress/issues/1810](https://github.com/cypress-io/cypress/issues/181))~
+- [x] ~See if we can add more meaningful assertion messages~
 - [ ] Somehow show the diff image whenever the check fails
 
