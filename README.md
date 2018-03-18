@@ -1,5 +1,7 @@
 # cypress-match-screenshot
 
+[![npm version](https://img.shields.io/npm/v/cypress-match-screenshot.svg)](https://www.npmjs.com/package/cypress-match-screenshot)
+
 Utility to take screenshots during a cypress test and match them against previous runs.
 
 ## Disclaimer
