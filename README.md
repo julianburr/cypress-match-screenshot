@@ -54,7 +54,7 @@ cy.myCustomName('Example');
 
 **name** 
 
-If you have multiple screenshits within the same test case, you need to give them unique names so that the matcher can identify which image it should match to. It also makes it easier for you to find the image in the `screenshots` folder.
+If you have multiple screenshots within the same test case, you need to give them unique names so that the matcher can identify which image it should match to. It also makes it easier for you to find the image in the `screenshots` folder.
 
 The general rule for screenshot naming is: `[Test Suit Name] -- [Test Name] -- [Screenshot Name].png`
 
