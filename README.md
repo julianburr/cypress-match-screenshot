@@ -63,11 +63,12 @@ The general rule for screenshot naming is: `[Test Suit Name] -- [Test Name] -- [
 
 ## Update screenshots
 
-If you want to update the base screenshots with the new generated set, put the `updateScreenshots` parameter to Cypress config.
+If you want to update the base screenshots with the new generated set, put the `updateScreenshots` parameter to your Cypress config. This will allow your tests to pass and the base screenshots being replaced by the new ones.
 
 ## Todos
 
 - [x] ~Crop screenshots to only contain relevant viewport (see [https://github.com/cypress-io/cypress/issues/1810](https://github.com/cypress-io/cypress/issues/181))~
 - [x] ~See if we can add more meaningful assertion messages~
 - [ ] Somehow show the diff image whenever the check fails
+- [ ] Test and verify CI behaviour of this plugin
 
