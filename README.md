@@ -60,6 +60,11 @@ If you have multiple screenshots within the same test case, you need to give the
 
 The general rule for screenshot naming is: `[Test Suit Name] -- [Test Name] -- [Screenshot Name].png`
 
+
+## Update screenshots
+
+If you want to update the base screenshots with the new generated set, put the `updateScreenshots` parameter to Cypress config.
+
 ## Todos
 
 - [x] ~Crop screenshots to only contain relevant viewport (see [https://github.com/cypress-io/cypress/issues/1810](https://github.com/cypress-io/cypress/issues/181))~

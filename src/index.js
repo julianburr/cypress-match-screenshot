@@ -92,12 +92,17 @@ function matchScreenshot (name, options = {}) {
           .then((result) => {
             console.log(`Matched screenshot - Passed: ${result.stdout}`);
             const matches = result.stdout === 'Yay';
-            assert.isTrue(matches, 'Screenshots match');
-            cy.exec(
-              `mv "${CYPRESS_SCREENSHOT_FOLDER}/new/${fileName}.png" ` +
-                `"${CYPRESS_SCREENSHOT_FOLDER}/${fileName}.png"`,
-              { log: false }
-            );
+            if (Cypress.config('updateScreenshots') || matches) {
+              cy.exec(
+                `mv "${CYPRESS_SCREENSHOT_FOLDER}/new/${fileName}.png" ` +
+                  `"${CYPRESS_SCREENSHOT_FOLDER}/${fileName}.png"`,
+                { log: false }
+              );
+              cy.exec(`rm "${CYPRESS_SCREENSHOT_FOLDER}/diff/${fileName}.png"`, { log: false });
+            }
+            if (!Cypress.config('updateScreenshots')) {
+              assert.isTrue(matches, 'Screenshots match');
+            }
           });
       } else {
         console.log('No previous screenshot found! Match passed!');
