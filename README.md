@@ -36,6 +36,20 @@ On the first run the assertion will always pass and the tool will just store the
 
 You can find all diffs as images in `cypress/screenshots/diff` to see what excactly changed 😊
 
+### CI
+
+> NOTE: I haven't played around with screenshot matching in CI, so treat everything in here careful and please feel free to add / edit anything if you find missing or wrong information 😊
+
+**Keep screenshots around to be matched**
+
+By default Cypress deletes all the screenshots before running tests in CI mode. To disable that (to keep the screenshots around so they can be matched in subsequent runs) just add the following to your `cypress.json` config:
+
+```json
+{
+  "trashAssetsBeforeHeadlessRuns": false
+}
+```
+
 ## API
 
 ### register
