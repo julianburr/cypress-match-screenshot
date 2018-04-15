@@ -68,12 +68,23 @@ cy.myCustomName('Example');
 
 ## Match screenshot method
 
+```js
+cy.matchScreenshot(name, {
+  treshold,
+  tresholdType
+});
+```
+
 **name** 
 
 If you have multiple screenshots within the same test case, you need to give them unique names so that the matcher can identify which image it should match to. It also makes it easier for you to find the image in the `screenshots` folder.
 
 The general rule for screenshot naming is: `[Test Suit Name] -- [Test Name] -- [Screenshot Name].png`
 
+**options**
+
+ * **threshold**: Threshold for the screenshot matching, default: `0.005`
+ * **thresholdType**: unit for the threshold,`pixel` or `percent`, default: `percent`
 
 ## Update screenshots
 
@@ -81,8 +92,8 @@ If you want to update the base screenshots with the new generated set, put the `
 
 ## Todos
 
-- [x] ~Crop screenshots to only contain relevant viewport (see [https://github.com/cypress-io/cypress/issues/1810](https://github.com/cypress-io/cypress/issues/181))~
-- [x] ~See if we can add more meaningful assertion messages~
+- [x] ~~Crop screenshots to only contain relevant viewport (see [https://github.com/cypress-io/cypress/issues/1810](https://github.com/cypress-io/cypress/issues/181))~~
+- [x] ~~See if we can add more meaningful assertion messages~~
 - [ ] Somehow show the diff image whenever the check fails
 - [ ] Test and verify CI behaviour of this plugin
 
