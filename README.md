@@ -70,8 +70,8 @@ cy.myCustomName('Example');
 
 ```js
 cy.matchScreenshot(name, {
-  treshold,
-  tresholdType
+  threshold,
+  thresholdType
 });
 ```
 
