@@ -86,7 +86,8 @@ function matchScreenshot (name, options = {}) {
               `--pathOld="${CYPRESS_SCREENSHOT_FOLDER}/${fileName}.png" ` +
               `--pathNew="${CYPRESS_SCREENSHOT_FOLDER}/new/${fileName}.png" ` +
               `--target="${CYPRESS_SCREENSHOT_FOLDER}/diff/${fileName}.png" ` +
-              `--threshold=${options.threshold || 0.005}`,
+              `--threshold=${options.threshold} ` +
+              `--thresholdType=${options.thresholdType} `,
             { log: false }
           )
           .then((result) => {

@@ -9,14 +9,19 @@ const resolve = (name) => {
   return path.resolve(__dirname, `../../../${name}`);
 };
 
-const threshold = argv.threshold ? parseFloat(argv.threshold) : 0.005;
-
+const threshold = argv.threshold !== undefined ? argv.threshold : 0.005;
+let thresholdType;
+switch(argv.thresholdType) {
+  case 'pixel': thresholdType = Blink.THRESHOLD_PIXEL; break;
+  case 'percent':
+  default: thresholdType = Blink.THRESHOLD_PERCENT; break;
+}
 const diff = new Blink({
   imageAPath: resolve(argv.pathOld),
   imageBPath: resolve(argv.pathNew),
   imageOutputPath: resolve(argv.target),
-  thresholdType: Blink.THRESHOLD_PERCENT,
-  threshold
+  thresholdType,
+  threshold,
 });
 
 diff.run((error, result) => {
