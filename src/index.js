@@ -40,7 +40,7 @@ function takeScreenshot (name) {
   );
   cy.exec(
     `cypress-crop-screenshot ` +
-      `--path="${path.join(cypressPaths.ROOT_FOLDER, cypressPaths.SCREENSHOT_FOLDER, `${name}.png`)}"` +
+      `--path="${path.join(cypressPaths.ROOT_FOLDER, cypressPaths.SCREENSHOT_FOLDER, `${name}.png`)}" ` +
       `--top=${frame.top} ` +
       `--left=${frame.left} ` +
       `--width=${frame.width} ` +
