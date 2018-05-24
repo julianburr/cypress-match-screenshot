@@ -1,6 +1,6 @@
 {
   "name": "cypress-match-screenshot",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Utility to take screenshots during a cypress test and match them against previous runs",
   "main": "src/index.js",
   "bin": {
