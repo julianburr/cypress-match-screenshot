@@ -11,17 +11,21 @@ const resolve = (name) => {
 
 const threshold = argv.threshold !== undefined ? argv.threshold : 0.005;
 let thresholdType;
-switch(argv.thresholdType) {
-  case 'pixel': thresholdType = Blink.THRESHOLD_PIXEL; break;
+switch (argv.thresholdType) {
+  case 'pixel':
+    thresholdType = Blink.THRESHOLD_PIXEL;
+    break;
   case 'percent':
-  default: thresholdType = Blink.THRESHOLD_PERCENT; break;
+  default:
+    thresholdType = Blink.THRESHOLD_PERCENT;
+    break;
 }
 const diff = new Blink({
   imageAPath: resolve(argv.pathOld),
   imageBPath: resolve(argv.pathNew),
   imageOutputPath: resolve(argv.target),
   thresholdType,
-  threshold,
+  threshold
 });
 
 diff.run((error, result) => {

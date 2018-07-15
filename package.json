@@ -1,19 +1,18 @@
 {
   "name": "cypress-match-screenshot",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "Utility to take screenshots during a cypress test and match them against previous runs",
   "main": "src/index.js",
   "bin": {
-    "cypress-crop-screenshot": "src/crop-screenshot.js",
     "cypress-diff-screenshot": "src/diff-screenshot.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/julianburr/cypress-match-screenshot.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["cypress", "screenshot", "diffing"],
+  "author": "Julian Burr <hello@julianburr.de>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/julianburr/cypress-match-screenshot/issues"
   },
