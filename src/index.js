@@ -106,6 +106,8 @@ function matchScreenshot (name, options = {}) {
                 }
                 if (!Cypress.config('updateScreenshots')) {
                   assert.isTrue(matches, 'Screenshots match');
+                } else {
+                  expect.fail();
                 }
               });
           } else {
