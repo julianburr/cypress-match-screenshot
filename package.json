@@ -23,7 +23,6 @@
   "homepage": "https://github.com/julianburr/cypress-match-screenshot#readme",
   "dependencies": {
     "blink-diff": "^1.0.13",
-    "fs2": "^0.3.1",
     "image-size": "^0.6.2",
     "jimp": "^0.2.28",
     "path": "^0.12.7",

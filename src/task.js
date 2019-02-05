@@ -1,13 +1,11 @@
-const fs2 = require('fs2');
+const fs = require('fs');
 const touch = require('touch');
 
-function register(on, config) {
+function registerTask(on, config) {
   on('task', {
     mkdir(newDir) {
       return new Promise(function(resolve, reject) {
-        fs2.mkdir(newDir, {
-          intermediate: true
-        }, resolve);
+        fs.mkdir(newDir, resolve);
       })
     },
     touch(path) {
@@ -17,17 +15,15 @@ function register(on, config) {
     },
     rename({from, to}) {
       return new Promise(function(resolve, reject) {
-        fs2.rename(from, to, resolve);
+        fs.rename(from, to, resolve);
       });
     },
     unlink(path) {
       return new Promise(function(resolve, reject) {
-        fs2.unlink(path, resolve);
+        fs.unlink(path, resolve);
       });
     }
   });
 };
 
-module.exports = {
-  register
-};
+module.exports = registerTask;

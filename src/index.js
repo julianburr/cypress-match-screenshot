@@ -1,4 +1,5 @@
 const path = require('path');
+const registerTask = require('./task');
 
 const cypressPaths = {
   SCREENSHOT_FOLDER: 'cypress/match-screenshots',
@@ -42,7 +43,6 @@ function matchScreenshot (name, options = {}) {
   // Ensure that the screenshot folders exist
   const newDir = `${cypressPaths.SCREENSHOT_FOLDER}/new`;
   const diffDir = `${cypressPaths.SCREENSHOT_FOLDER}/diff`;
-  cy.log('MKDIR');
   cy.task('mkdir', newDir);
   cy.task('mkdir', diffDir);
 
@@ -127,5 +127,6 @@ function register (
 }
 
 module.exports = {
-  register
+  register,
+  registerTask
 };
