@@ -21,6 +21,17 @@ import { register } from 'cypress-match-screenshot';
 register();
 ```
 
+Next, register the custom tasks in your `cypress/plugins/index.js` file:
+
+```js
+// require for older versions of node
+const registerTask = require('cypress-match-screenshot').registerTask;
+
+module.exports = (on, config) => {
+  registerTask(on, config);
+};
+```
+
 That's it, now you can use the feature like this:
 
 ```js
