@@ -1,4 +1,5 @@
 const path = require('path');
+const registerTask = require('./task');
 
 const cypressPaths = {
   SCREENSHOT_FOLDER: 'cypress/match-screenshots',
@@ -27,7 +28,6 @@ function relPath (str) {
     str
   );
 }
-
 /**
  * Takes a screenshot and, if available, matches it against the screenshot
  * from the previous test run. Assertion will fail if the diff is larger than
@@ -38,18 +38,18 @@ function relPath (str) {
 function matchScreenshot (name, options = {}) {
   const fileName = `${this.test.parent.title} -- ${this.test.title} -- ${name}`;
 
-  console.log('Taking screenshot');
+  cy.log('Taking screenshot');
 
   // Ensure that the screenshot folders exist
-  cy.exec(`mkdir -p ${cypressPaths.SCREENSHOT_FOLDER}/new`, { log: false });
-  cy.exec(`mkdir -p ${cypressPaths.SCREENSHOT_FOLDER}/diff`, { log: false });
+  const newDir = `${cypressPaths.SCREENSHOT_FOLDER}/new`;
+  const diffDir = `${cypressPaths.SCREENSHOT_FOLDER}/diff`;
+  cy.task('mkdir', newDir);
+  cy.task('mkdir', diffDir);
 
   // we need to touch the old file for the first run,
   // we'll check later if the file actually has any content
   // in it or not
-  cy.exec(`touch "${cypressPaths.SCREENSHOT_FOLDER}/${fileName}.png"`, {
-    log: false
-  });
+  cy.task('touch', `${cypressPaths.SCREENSHOT_FOLDER}/${fileName}.png`);
 
   const id = uuid();
   let path = null;
@@ -68,9 +68,7 @@ function matchScreenshot (name, options = {}) {
       const oldPath = `${cypressPaths.SCREENSHOT_FOLDER}/${fileName}.png`;
       const newPath = `${cypressPaths.SCREENSHOT_FOLDER}/new/${fileName}.png`;
 
-      cy.exec(`mv "${path}" "${newPath}"`, {
-        log: false
-      });
+      cy.task('rename', { from: path, to: newPath });
 
       cy.log('Screenshot taken');
       cy
@@ -94,15 +92,11 @@ function matchScreenshot (name, options = {}) {
                 console.log(`Matched screenshot - Passed: ${result.stdout}`);
                 const matches = result.stdout === 'Yay';
                 if (Cypress.config('updateScreenshots') || matches) {
-                  cy.exec(
-                    `mv "${cypressPaths.SCREENSHOT_FOLDER}/new/${fileName}.png" ` +
-                      `"${cypressPaths.SCREENSHOT_FOLDER}/${fileName}.png"`,
-                    { log: false }
-                  );
-                  cy.exec(
-                    `rm "${cypressPaths.SCREENSHOT_FOLDER}/diff/${fileName}.png"`,
-                    { log: false }
-                  );
+                  cy.task('rename', {
+                    from: `${cypressPaths.SCREENSHOT_FOLDER}/new/${fileName}.png`,
+                    to: `${cypressPaths.SCREENSHOT_FOLDER}/${fileName}.png`
+                  });
+                  cy.task('unlink', `${cypressPaths.SCREENSHOT_FOLDER}/diff/${fileName}.png`);
                 }
                 if (!Cypress.config('updateScreenshots')) {
                   assert.isTrue(matches, 'Screenshots match');
@@ -110,11 +104,10 @@ function matchScreenshot (name, options = {}) {
               });
           } else {
             cy.log('No previous screenshot found to match against!');
-            cy.exec(
-              `mv "${cypressPaths.SCREENSHOT_FOLDER}/new/${fileName}.png" ` +
-                `"${cypressPaths.SCREENSHOT_FOLDER}/${fileName}.png"`,
-              { log: false }
-            );
+            cy.task('rename', {
+              from: `${cypressPaths.SCREENSHOT_FOLDER}/new/${fileName}.png`,
+              to: `${cypressPaths.SCREENSHOT_FOLDER}/${fileName}.png`
+            });
           }
         });
     });
@@ -134,5 +127,6 @@ function register (
 }
 
 module.exports = {
-  register
+  register,
+  registerTask
 };
